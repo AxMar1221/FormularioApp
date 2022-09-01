@@ -9,16 +9,24 @@
         <input class="form-control"
         type="text"
         name="name"
+<<<<<<< HEAD
+=======
+        [class.is-invalid]="name.invalid && name.touched"
+        [ngModel]="user.name"
+>>>>>>> 216c6e1578dbaf8c6b9cab232aa255884d932c4b
         placeholder="Nombre"
         [class.is-invalid]="name.invalid && name.touched"
         [ngModel]="user.name"
         required
         minlength="5"
         #name="ngModel">
+<<<<<<< HEAD
     <small *ngIf="name.invalid && name.touched"
            class="form-text text-danger">
            Ingrese minimo 3 cacteres
     </small>
+=======
+>>>>>>> 216c6e1578dbaf8c6b9cab232aa255884d932c4b
       </div>
     </div>
     <br>
@@ -28,6 +36,7 @@
         <input class="form-control"
         type="text"
         name="lastname"
+<<<<<<< HEAD
         placeholder="Apellido"
         [class.is-invalid]="lastname.invalid && lastname.touched"
         [ngModel]="user.lastname"
@@ -38,6 +47,14 @@
            class="form-text text-danger">
         Ingrese minimo 3 cacteres
     </small>
+=======
+        [class.is-invalid]="lastname.invalid && lastname.touched"
+        ngModel
+        placeholder="Apellido"
+        required
+        minlength="5"
+        #lastname="ngModel">
+>>>>>>> 216c6e1578dbaf8c6b9cab232aa255884d932c4b
       </div>
     </div>
   </div>
@@ -47,6 +64,7 @@
   <div class="col-8">
     <input class="form-control"
     type="email"
+<<<<<<< HEAD
     name="email"
     placeholder="Correo electrónico"
     [class.is-invalid]="email.invalid && email.touched"
@@ -58,6 +76,14 @@
            class="form-text text-danger">
         Ingrese un email valido
     </small>
+=======
+    [class.is-invalid]="email.invalid && email.touched"
+    ngModel
+    name="email"
+    placeholder="Correo electrónico"
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+    #email="ngModel">
+>>>>>>> 216c6e1578dbaf8c6b9cab232aa255884d932c4b
   </div>
 </div>
 <div class="form-group row">
