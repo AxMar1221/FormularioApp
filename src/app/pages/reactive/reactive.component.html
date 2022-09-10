@@ -1,31 +1,106 @@
 <div class="container mt-5">
   <h4>Formularios <small> Reactivos </small></h4>
   <hr>
-  <form autocomplete="off">
+  <form autocomplete="off" [formGroup]="form" (ngSubmit)="save()">
     <div>
       <div class="form-group row">
         <label class="col-2 col-form-label">Nombre</label>
-        <div class="col-8">
+        <div class="col">
           <input class="form-control"
           type="text"
-          placeholder="Nombre">
+          placeholder="Nombre"
+          formControlName="name"
+          [class.is-invalid]="nameNoValid">
+        <small *ngIf="nameNoValid" class="text-danger">
+          Ingrese minimo 4 caracteres
+        </small>
         </div>
       </div>
+      <br>
       <div class="form-group row">
         <label class="col-2 col-form-label">Apellido</label>
-        <div class="col-8">
+        <div class="col">
           <input class="form-control"
           type="text"
-          placeholder="Apellido">
+          placeholder="Apellido"
+          formControlName="lastname"
+          [class.is-invalid]="lastnameNoValid">
+          <small *ngIf="nameNoValid" class="text-danger">
+            Ingrese minimo 3 caracteres
+          </small>
         </div>
       </div>
     </div>
+    <br>
     <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
-    <div class="col-8">
+    <div class="col">
       <input class="form-control"
       type="email"
-      placeholder="Correo electrónico">
+      placeholder="Correo electrónico"
+      formControlName="email"
+      [class.is-invalid]="emailNoValid">
+      <small *ngIf="nameNoValid" class="text-danger">
+        Ingrese un correo valido
+      </small>
+    </div>
+  </div>
+  <br>
+  <div class="form-group row" formGroupName="adress">
+    <label class="col-2 col-form-label">Dirección</label>
+      <div class="form-row col">
+        <div class="col">
+          <input class="form-control"
+          type="text"
+          placeholder="Ciudad"
+          formControlName="city"
+          [class.is-invalid]="cityNoValid">
+        </div>
+        <br>
+        <div class="col">
+          <input class="form-control"
+          type="text"
+          placeholder="Estado"
+          formControlName="estate"
+          [class.is-invalid]="estatelNoValid">
+        </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th>ID</th>
+            <th>Pasatiempo</th>
+            <th>Borrar</th>
+          </tr>
+        </thead>
+        <tbody formArrayName="hobies">
+          <tr *ngFor="let control of hobies.controls; let i = index">
+            <td>{{ i+ 1}}</td>
+            <td>
+              <input class="form-control"
+                     type="text"
+                     [formControlName]="i">
+            </td>
+            <td>
+              <button class="btn btn-danger"
+                      type="button"
+                      (click)="deletHobie(i)">
+                Borrar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-primary mt-3 mb-5"
+              type="button"
+              (click)="addHobie()">
+        Agregar +
+      </button>
+
     </div>
   </div>
   <div class="form-group row">
@@ -37,4 +112,11 @@
     </div>
   </div>
 </form>
+<pre>
+  Estado del formulario: {{ form.valid }}
+  Status {{ form.status }}
+</pre>
+<pre>
+    {{ form.value | json }}
+</pre>
 </div>
